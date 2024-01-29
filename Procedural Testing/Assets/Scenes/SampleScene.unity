@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657993, g: 0.4964133, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465801, g: 0.49641353, b: 0.5748176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -172,7 +172,7 @@ MonoBehaviour:
   idleTarget: {fileID: 1507702529}
   capFollow: {fileID: 1029582143}
   stepDistance: 1
-  stepHeight: 1
+  stepHeight: 0.5
   stepSpeed: 3
   idleLegOffset: 2
 --- !u!4 &26666987 stripped
@@ -1733,7 +1733,7 @@ MonoBehaviour:
   idleTarget: {fileID: 2043739730}
   capFollow: {fileID: 1029582143}
   stepDistance: 1
-  stepHeight: 1
+  stepHeight: 0.5
   stepSpeed: 3
   idleLegOffset: 2
 --- !u!1 &1653712785
