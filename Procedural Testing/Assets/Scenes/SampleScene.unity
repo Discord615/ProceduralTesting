@@ -247,7 +247,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1029582143}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f7ca07bba0397784593fffa179d4241c, type: 3}
       propertyPath: m_LocalScale.x
@@ -279,15 +279,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7ca07bba0397784593fffa179d4241c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7ca07bba0397784593fffa179d4241c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7ca07bba0397784593fffa179d4241c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7ca07bba0397784593fffa179d4241c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -462,13 +462,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 519254303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: effbad80fdbf5d640869bae156d5b47b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ae0ed58ea4185c4bb670bb233b5f36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1029582143}
   LeftLeg: {fileID: 18286546}
   RightLeg: {fileID: 1604151131}
-  smoothSpeed: 0.05
 --- !u!1 &579753065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1122,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14643352, y: -0.81361634, z: 0.23253246, w: 0.51236165}
-  m_LocalPosition: {x: 9.65, y: 6.44, z: 12.24}
+  m_LocalPosition: {x: 23.39, y: 11.31, z: 10.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1274,7 +1272,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 519254305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1029582144
@@ -1289,7 +1288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1662186efded84f9c196f59b7c48f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 1.5
+  acceleration: 2
+  decceleration: 2
+  currentSpeed: 0
+  rotationSpeed: 360
+  mainBody: {fileID: 519254303}
 --- !u!1 &1033670164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7036213049465896255, guid: f7ca07bba0397784593fffa179d4241c, type: 3}
@@ -2367,7 +2371,6 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 676275568}
-  - {fileID: 348228189}
   - {fileID: 1029582143}
   - {fileID: 617407581}
   - {fileID: 690739113}

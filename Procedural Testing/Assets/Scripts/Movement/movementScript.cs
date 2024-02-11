@@ -6,13 +6,39 @@ public class movementScript : MonoBehaviour
 {
     [Header("Essential Variables")]
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float acceleration = 2f;
+    [SerializeField] float decceleration = 2f;
+    [SerializeField] float currentSpeed = 0f;
+    [SerializeField] float rotationSpeed = 360;
+    [SerializeField] GameObject mainBody;
     public Vector2 moveDirection { get; private set; } = Vector2.zero;
+    Vector3 currentDirection = new Vector3();
 
     private void Update()
     {
         moveDirection = InputManager.instance.getMovementPressed();
 
-        transform.Translate(move() * (moveSpeed * (InputManager.instance.getRunPressed() ? 2f : 1)) * Time.deltaTime);
+
+        rotate();
+        speedControl();
+
+        if (move() != Vector3.zero) currentDirection = move();
+
+        transform.Translate(currentDirection * (moveSpeed * (currentSpeed * (InputManager.instance.getRunPressed() ? 1.5f : 1))) * Time.deltaTime);
+    }
+
+    private void speedControl()
+    {
+        if (moveDirection != Vector2.zero)
+        {
+            currentSpeed += acceleration * Time.deltaTime;
+            if (currentSpeed >= moveSpeed - 0.05f) currentSpeed = moveSpeed;
+        }
+        else
+        {
+            currentSpeed -= decceleration * Time.deltaTime;
+            if (currentSpeed <= 0.05f) currentSpeed = 0;
+        }
     }
 
     private Vector3 move()
@@ -29,5 +55,16 @@ public class movementScript : MonoBehaviour
         Vector3 cameraRelativeMovement = forwardRelativeVertical + rightRelativeVertical;
 
         return cameraRelativeMovement;
+    }
+
+    private void rotate()
+    {
+        if (moveDirection != Vector2.zero)
+        {
+            Vector3 moveDirectionV3 = new Vector3(move().x, 0, move().z);
+            Quaternion rotation = Quaternion.LookRotation(moveDirectionV3, Vector3.up);
+
+            mainBody.transform.rotation = Quaternion.RotateTowards(mainBody.transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        }
     }
 }
