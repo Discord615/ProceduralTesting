@@ -23,23 +23,21 @@ public class IKWalking : MonoBehaviour
     {
         transform.position = currentPos;
 
-        if (Vector3.Distance(transform.position, target.position) > stepDistance && lerp >= 1 && OtherLeg.isGrounded())
+        if (Vector3.Distance(transform.position, target.position) > stepDistance && lerp >= 1 && OtherLeg.isGrounded() && InputManager.instance.getMovementPressed() != Vector2.zero)
         {
+            isIdle = false;
             lerp = 0;
             newPos = target.position;
 
             // Debug.Log(gameObject.name + ": Moving");
         }
 
-        // ! TO BE FIXED
-        // if (Vector3.Distance(transform.position, capFollow.position) < 0.5f && lerp >= 1 && !isIdle)
-        // {
-        //     isIdle = true;
-        //     lerp = 0;
-        //     newPos = idleTarget.position;
-
-        //     Debug.Log(gameObject.name + ": Idle");
-        // }
+        if (InputManager.instance.getMovementPressed() == Vector2.zero && lerp >= 1 && !isIdle && movementScript.instance.getCurrentSpeed() == 0 && OtherLeg.isGrounded())
+        {
+            isIdle = true;
+            lerp = 0;
+            newPos = idleTarget.position;
+        }
 
         if (lerp < 1)
         {

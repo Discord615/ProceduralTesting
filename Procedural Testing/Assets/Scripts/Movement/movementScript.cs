@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class movementScript : MonoBehaviour
 {
+    public static movementScript instance { get; private set; }
+
     [Header("Essential Variables")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float acceleration = 2f;
@@ -14,10 +16,19 @@ public class movementScript : MonoBehaviour
     public Vector2 moveDirection { get; private set; } = Vector2.zero;
     Vector3 currentDirection = new Vector3();
 
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("More than one instance of " + instance.name);
+            Destroy(instance);
+        }
+        instance = this;
+    }
+
     private void Update()
     {
         moveDirection = InputManager.instance.getMovementPressed();
-
 
         rotate();
         speedControl();
@@ -66,5 +77,12 @@ public class movementScript : MonoBehaviour
 
             mainBody.transform.rotation = Quaternion.RotateTowards(mainBody.transform.rotation, rotation, rotationSpeed * Time.deltaTime);
         }
+    }
+
+
+
+    public float getCurrentSpeed()
+    {
+        return currentSpeed;
     }
 }
